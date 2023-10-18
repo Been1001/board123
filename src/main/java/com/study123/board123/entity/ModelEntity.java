@@ -3,7 +3,10 @@ package com.study123.board123.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
+
 
 @Entity
 @Getter @Setter
@@ -15,7 +18,24 @@ public class ModelEntity {
 
     private String tableName;
 
-    @Column(columnDefinition = "TEXT")
-    private String json;
+
+    private String columns;
+
+    private LocalDateTime createdAt;
+
+
+    @PrePersist
+    public void prePersist() {
+        LocalDateTime now = LocalDateTime.now();
+        this.createdAt = now;
+
+    }
+
+
+
+
+
 }
+
+
 

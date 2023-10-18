@@ -7,21 +7,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @Controller
+
 public class ModelController {
     @Autowired
     private ModelService modelService;
 
     @GetMapping("/")
     public String modelWrite(Model model) {
-        return "modelwrite";
+        return "/modelwrite";
     }
 
     @PostMapping("/create-table")
-    public String createTable(ModelEntity modelEntity) {
+    public String createTable(@RequestBody ModelEntity modelEntity) {
         modelService.createTable(modelEntity);
-        return "redirect:/";
+        return "redirect:/modelwrite";
     }
 }
 
